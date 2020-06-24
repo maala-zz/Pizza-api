@@ -1,4 +1,4 @@
-package model;
+package com.innoscripta.pizza.model;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

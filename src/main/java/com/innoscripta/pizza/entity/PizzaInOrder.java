@@ -1,6 +1,6 @@
-package entity;
+package com.innoscripta.pizza.entity;
 
-import model.InnoscriptaEntity;
+import com.innoscripta.pizza.model.InnoscriptaEntity;
 
 import javax.persistence.*;
 
