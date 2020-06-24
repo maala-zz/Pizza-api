@@ -6,4 +6,8 @@ import javax.persistence.*;
 
 @Entity
 public class OnlineOrder extends InnoscriptaEntity {
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 }

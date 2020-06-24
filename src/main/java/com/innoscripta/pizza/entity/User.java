@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class User extends InnoscriptaEntity {
     //region Properties
-    
+
     @NotNull(message = "{NotNull.email}")
     @Size(min=8, max=50)
     public String email;
@@ -19,6 +19,8 @@ public class User extends InnoscriptaEntity {
     public String password;
     public String telephone;
 
+    @OneToMany(mappedBy = "user")
+    private List<OnlineOrder> orders;
 
 
     //endregion
