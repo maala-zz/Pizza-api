@@ -20,8 +20,7 @@ public class User extends InnoscriptaEntity {
     public String telephone;
 
     @OneToMany(mappedBy = "user")
-    private List<OnlineOrder> orders;
-
+    public List<OnlineOrder> orders;
 
     //endregion
 }

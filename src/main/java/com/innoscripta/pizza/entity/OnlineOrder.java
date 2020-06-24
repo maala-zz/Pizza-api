@@ -13,5 +13,5 @@ public class OnlineOrder extends InnoscriptaEntity {
     private User user;
 
     @OneToMany(mappedBy = "onlineOrder")
-    private List<PizzaInOrder> orderPizzas;
+    public List<PizzaInOrder> orderPizzas;
 }
