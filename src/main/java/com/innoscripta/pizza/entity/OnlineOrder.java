@@ -10,8 +10,11 @@ public class OnlineOrder extends InnoscriptaEntity {
 
     @ManyToOne
     @JoinColumn(name="user_id")
-    private User user;
+    public User user;
 
     @OneToMany(mappedBy = "onlineOrder")
     public List<PizzaInOrder> orderPizzas;
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    public Invoice invoice;
 }
