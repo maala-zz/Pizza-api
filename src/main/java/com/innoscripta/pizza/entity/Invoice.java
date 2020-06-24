@@ -6,4 +6,6 @@ import javax.persistence.*;
 
 @Entity
 public class Invoice extends InnoscriptaEntity {
+    public double deliveryCost;
+    public double totalOrderCost;
 }
