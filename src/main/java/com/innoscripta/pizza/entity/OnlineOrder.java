@@ -15,6 +15,7 @@ public class OnlineOrder extends InnoscriptaEntity {
     @OneToMany(mappedBy = "onlineOrder")
     public List<PizzaInOrder> orderPizzas;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "onlineOrder", cascade = CascadeType.ALL)
     public Invoice invoice;
+
 }
