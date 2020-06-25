@@ -7,6 +7,7 @@ import com.innoscripta.pizza.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -41,6 +42,15 @@ public class PizzaService {
             return new ResponseEntity<AddPizzaResponseDto>(new AddPizzaResponseDto(result.id), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<AddPizzaResponseDto>(HttpStatus.FAILED_DEPENDENCY);
+        }
+    }
+
+    public Pizza loadPizzaById(UUID pizzaId) {
+        try {
+            Pizza pizza = pizzaRepository.findPizzaById(pizzaId);
+            return pizza;
+        } catch (Exception ex) {
+            return null;
         }
     }
 
