@@ -6,5 +6,6 @@ public class SignupDto {
     public String address;
     public String password;
     public String telephone;
+    public String name;
 
 }

@@ -1,4 +1,11 @@
 package com.innoscripta.pizza.dto;
 
-public class SignupResponse {
+import java.util.UUID;
+
+public class SignupResponseDto {
+    public UUID userId;
+
+    public SignupResponseDto(UUID userId) {
+        this.userId = userId;
+    }
 }
