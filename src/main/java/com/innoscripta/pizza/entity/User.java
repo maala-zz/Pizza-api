@@ -18,9 +18,21 @@ public class User extends InnoscriptaEntity {
     public String address;
     public String password;
     public String telephone;
+    public String name;
 
     @OneToMany(mappedBy = "user")
     public List<OnlineOrder> orders;
 
-    //endregion
+    public User(){
+
+    }
+
+    public User(String email, String address, String password, String telephone, String name) {
+        this.email = email;
+        this.address = address;
+        this.password = password;
+        this.telephone = telephone;
+        this.name = name;
+    }
+//endregion
 }
