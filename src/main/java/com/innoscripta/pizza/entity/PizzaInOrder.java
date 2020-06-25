@@ -17,4 +17,12 @@ public class PizzaInOrder extends InnoscriptaEntity {
 
     public int quantity;
 
+    public PizzaInOrder() {
+    }
+
+    public PizzaInOrder(Pizza pizza, OnlineOrder onlineOrder, int quantity) {
+        this.pizza = pizza;
+        this.onlineOrder = onlineOrder;
+        this.quantity = quantity;
+    }
 }
