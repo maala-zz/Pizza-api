@@ -2,10 +2,7 @@ package com.innoscripta.pizza.controller;
 
 import com.innoscripta.pizza.dto.AddOrderRequestDto;
 import com.innoscripta.pizza.dto.AddOrderResponseDto;
-import com.innoscripta.pizza.dto.AddPizzaRequestDto;
-import com.innoscripta.pizza.dto.AddPizzaResponseDto;
 import com.innoscripta.pizza.service.OrderService;
-import com.innoscripta.pizza.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;

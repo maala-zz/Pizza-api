@@ -1,10 +1,7 @@
 package com.innoscripta.pizza.controller;
 
 import com.innoscripta.pizza.dto.*;
-import com.innoscripta.pizza.repository.UserRepository;
 import com.innoscripta.pizza.service.UserService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;

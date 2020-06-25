@@ -1,7 +1,6 @@
 package com.innoscripta.pizza.repository;
 
 import com.innoscripta.pizza.entity.Pizza;
-import com.innoscripta.pizza.entity.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

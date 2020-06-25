@@ -2,12 +2,10 @@ package com.innoscripta.pizza.service;
 
 import com.innoscripta.pizza.dto.*;
 import com.innoscripta.pizza.entity.Pizza;
-import com.innoscripta.pizza.entity.User;
 import com.innoscripta.pizza.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
