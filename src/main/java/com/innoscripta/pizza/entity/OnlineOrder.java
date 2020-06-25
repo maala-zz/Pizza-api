@@ -8,6 +8,11 @@ import java.util.List;
 @Entity
 public class OnlineOrder extends InnoscriptaEntity {
 
+    public String name;
+    public String surname;
+    public String address;
+    public String orderId;
+
     @ManyToOne
     @JoinColumn(name="user_id")
     public User user;
