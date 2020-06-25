@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan({"com.innoscripta.pizza.entity"})
+@EntityScan({"com.innoscripta.pizza.entity","com.innoscripta.pizza.config"})
 public class PizzaInnoscriptaApplication {
 
 	public static void main(String[] args) {
