@@ -11,7 +11,7 @@ public class OnlineOrder extends InnoscriptaEntity {
     public String name;
     public String surname;
     public String address;
-    public String orderId;
+    public String orderSerialId;
 
     @ManyToOne
     @JoinColumn(name="user_id")
