@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/order")
 public class OrderController {
 
     @Autowired
