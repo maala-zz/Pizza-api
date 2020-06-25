@@ -22,9 +22,14 @@ public class JwtTokenUtil implements Serializable {
     @Autowired
     private ConfigurableEnvironment environment;
     private static final long serialVersionUID = -2550185165626007488L;
-    public static final long JWT_TOKEN_VALIDITY = 120000 ;
+    public static final long JWT_TOKEN_VALIDITY = 120000;
     @Value("${jwt.secret}")
-    private String secret;	//retrieve username from jwt token
+    private String secret;    //retrieve username from jwt token
+
+    public String fetchTokenWithoutBearerWord(String bearerToken) {
+        String result = bearerToken.substring(7);
+        return result;
+    }
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
@@ -52,19 +57,19 @@ public class JwtTokenUtil implements Serializable {
         Claims c = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
         String x = c.getId();
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-    }	//check if the token has expired
+    }    //check if the token has expired
 
     private Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
-    }	//generate token for user
+    }    //generate token for user
 
     public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("email",user.email);
-        claims.put("jti",user.id);
+        claims.put("email", user.email);
+        claims.put("jti", user.id);
         return doGenerateToken(claims, user.name);
-    }	//while creating the token -
+    }    //while creating the token -
 
     //1. Define  claims of the token, like Issuer, Expiration, Subject, and the ID
     //2. Sign the JWT using the HS512 algorithm and secret key.
