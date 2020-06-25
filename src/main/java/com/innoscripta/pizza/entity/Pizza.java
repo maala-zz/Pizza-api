@@ -13,4 +13,18 @@ public class Pizza extends InnoscriptaEntity {
 
     @OneToMany(mappedBy = "pizza")
     public List<PizzaInOrder> pizzaInOrders;
+
+    public Pizza() {
+    }
+
+    public Pizza(double price, String description, String image_url) {
+        this.price = price;
+        this.description = description;
+        this.image_url = image_url;
+    }
+
+    public Pizza(double price, String description) {
+        this.price = price;
+        this.description = description;
+    }
 }
