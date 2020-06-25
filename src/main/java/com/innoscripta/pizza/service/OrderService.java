@@ -1,14 +1,8 @@
 package com.innoscripta.pizza.service;
 
 import com.innoscripta.pizza.dto.*;
-import com.innoscripta.pizza.entity.OnlineOrder;
-import com.innoscripta.pizza.entity.Pizza;
-import com.innoscripta.pizza.entity.PizzaInOrder;
-import com.innoscripta.pizza.entity.User;
-import com.innoscripta.pizza.repository.OrderRepository;
-import com.innoscripta.pizza.repository.PizzaInOrderRepository;
-import com.innoscripta.pizza.repository.PizzaRepository;
-import com.innoscripta.pizza.repository.UserRepository;
+import com.innoscripta.pizza.entity.*;
+import com.innoscripta.pizza.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +29,9 @@ public class OrderService {
 
     @Autowired
     private PizzaInOrderRepository pizzaInOrderRepository;
+
+    @Autowired
+    private InvoiceRepository invoiceRepository;
     //endregion
 
 
@@ -46,12 +43,14 @@ public class OrderService {
             OnlineOrder mappedOrder = new OnlineOrder(orderDto.name, orderDto.surname, orderDto.address, orderDto.orderSerialId);
 
             OnlineOrder order = orderRepository.save(mappedOrder);
+
             //region link order with user
             User user = userRepository.findUserById(currentUserId);
             order.user = user;
             user.orders.add(order);
             //endregion
 
+            //region link order with pizzas
             if (orderDto.pizzasInCart != null) {
                 for (PizzaInCartDto pizzaInCartDto : orderDto.pizzasInCart) {
                     Pizza pizza = pizzaRepository.findPizzaById(pizzaInCartDto.id);
@@ -61,6 +60,13 @@ public class OrderService {
                     pizzaInOrderRepository.save(pizzaOrder);
                 }
             }
+            //endregion
+
+            //region link order with invoice
+            Invoice invoice = new Invoice(orderDto.deliveryCost, orderDto.totalOrderCost);
+            invoice.onlineOrder = order;
+            invoiceRepository.save(invoice);
+            //endregion
 
             return new ResponseEntity<AddOrderResponseDto>(HttpStatus.CREATED);
         } catch (Exception e) {

@@ -14,4 +14,12 @@ public class Invoice extends InnoscriptaEntity {
     @OneToOne
     @MapsId
     public OnlineOrder onlineOrder;
+
+    public Invoice() {
+    }
+
+    public Invoice(double deliveryCost, double totalOrderCost) {
+        this.deliveryCost = deliveryCost;
+        this.totalOrderCost = totalOrderCost;
+    }
 }
