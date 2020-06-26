@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -34,7 +35,7 @@ public class OrderService {
     private InvoiceRepository invoiceRepository;
     //endregion
 
-
+    //region Methods
     public ResponseEntity<AddOrderResponseDto> add(HttpServletRequest req, AddOrderRequestDto orderDto) {
         try {
             String bearerToken = req.getHeader("Authorization");
@@ -73,5 +74,18 @@ public class OrderService {
             return new ResponseEntity<AddOrderResponseDto>(HttpStatus.FAILED_DEPENDENCY);
         }
     }
+
+    public ResponseEntity<List<OrderDto>> getCurrentUserOrders(HttpServletRequest req) {
+        try {
+            String bearerToken = req.getHeader("Authorization");
+            final String token = jwtTokenUtil.fetchTokenWithoutBearerWord(bearerToken);
+            UUID currentUserId = jwtTokenUtil.getUserId(token);
+            List<OnlineOrder> test = orderRepository.findByUserId(currentUserId);
+            return new ResponseEntity<List<OrderDto>>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<List<OrderDto>>(HttpStatus.FAILED_DEPENDENCY);
+        }
+    }
+    //endregion
 
 }
