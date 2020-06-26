@@ -33,6 +33,7 @@ public class UserService implements UserDetailsService {
     private AuthenticationManager authenticationManager;
     //endregion
 
+    //region Methods
     public ResponseEntity<SignupResponseDto> signup(SignupDto signupDto) {
         try {
             User previousUsrWithTheSameEmail = loadUserByEmail(signupDto.email);
@@ -88,5 +89,5 @@ public class UserService implements UserDetailsService {
             return user;
         throw new UsernameNotFoundException("User not found with ID: " + email);
     }
-
+    //endregion
 }

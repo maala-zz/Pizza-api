@@ -26,6 +26,7 @@ public class JwtTokenUtil implements Serializable {
     @Value("${jwt.secret}")
     private String secret;    //retrieve username from jwt token
 
+    //region Methods
     public String fetchTokenWithoutBearerWord(String bearerToken) {
         String result = bearerToken.substring(7);
         return result;
@@ -86,4 +87,5 @@ public class JwtTokenUtil implements Serializable {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
+    //endregion
 }

@@ -20,6 +20,7 @@ public class PizzaService {
     private PizzaRepository pizzaRepository;
     //endregion
 
+    //region Methods
     public ResponseEntity<List<PizzaDto>> getAll() {
         try {
             List<Pizza> pizzas = (List<Pizza>) pizzaRepository.findAll();
@@ -51,5 +52,5 @@ public class PizzaService {
             return null;
         }
     }
-
+    //endregion
 }
