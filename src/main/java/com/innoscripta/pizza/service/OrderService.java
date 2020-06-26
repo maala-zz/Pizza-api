@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 public class OrderService {
@@ -80,11 +81,24 @@ public class OrderService {
             String bearerToken = req.getHeader("Authorization");
             final String token = jwtTokenUtil.fetchTokenWithoutBearerWord(bearerToken);
             UUID currentUserId = jwtTokenUtil.getUserId(token);
-            List<OnlineOrder> test = orderRepository.findByUserId(currentUserId);
-            return new ResponseEntity<List<OrderDto>>(HttpStatus.CREATED);
+            List<OnlineOrder> userOrders = orderRepository.findByUserId(currentUserId);
+            List<OrderDto> userOrderDtos = userOrders.stream()
+                    .map(order -> orderToOrderDto(order))
+                    .collect(Collectors.toList());
+            return new ResponseEntity<List<OrderDto>>(userOrderDtos, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<List<OrderDto>>(HttpStatus.FAILED_DEPENDENCY);
         }
+    }
+
+    private OrderDto orderToOrderDto(OnlineOrder order) {
+        OrderDto result = new OrderDto(order.name, order.surname, order.address, order.orderSerialId);
+        result.invoice = new InvoiceDto(order.invoice.id, order.invoice.deliveryCost, order.invoice.totalOrderCost);
+        result.orderPizzas = order.orderPizzas.stream()
+                .map(orderPizza -> new PizzaInOrderDto(orderPizza.pizza.id, orderPizza.pizza.price, orderPizza.quantity, orderPizza.pizza.name))
+                .collect(Collectors.toList());
+
+        return result;
     }
     //endregion
 
