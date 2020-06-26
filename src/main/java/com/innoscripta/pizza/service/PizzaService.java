@@ -26,7 +26,7 @@ public class PizzaService {
             List<Pizza> pizzas = (List<Pizza>) pizzaRepository.findAll();
 
             List<PizzaDto> pizzaDtos = pizzas.stream()
-                    .map(pizza -> new PizzaDto(pizza.id, pizza.price, pizza.description, pizza.image_url))
+                    .map(pizza -> new PizzaDto(pizza.id, pizza.price, pizza.description, pizza.image_url, pizza.name))
                     .collect(Collectors.toList());
             return new ResponseEntity<List<PizzaDto>>(pizzaDtos, HttpStatus.valueOf(200));
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class PizzaService {
 
     public ResponseEntity<AddPizzaResponseDto> add(AddPizzaRequestDto pizzaDto) {
         try {
-            Pizza pizza = new Pizza(pizzaDto.price, pizzaDto.description);
+            Pizza pizza = new Pizza(pizzaDto.price,pizzaDto.description,pizzaDto.image_url,pizzaDto.name);
             Pizza result = pizzaRepository.save(pizza);
             return new ResponseEntity<AddPizzaResponseDto>(new AddPizzaResponseDto(result.id), HttpStatus.CREATED);
         } catch (Exception e) {
