@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public interface PizzaRepository extends CrudRepository<Pizza, UUID> {
 
-    @Query("SELECT u FROM Pizza u WHERE u.id like :id")
-    Pizza findPizzaById(@Param("id") UUID pizzaId);
+    @Query("SELECT u FROM Pizza u WHERE u.id = :id")
+    Pizza findPizzaById(@Param("id") UUID id);
 
 }

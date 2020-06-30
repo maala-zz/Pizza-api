@@ -1,8 +1,5 @@
 package com.innoscripta.pizza.dto;
 
-import com.innoscripta.pizza.entity.Invoice;
-import com.innoscripta.pizza.entity.PizzaInOrder;
-
 import java.util.List;
 
 public class OrderDto {

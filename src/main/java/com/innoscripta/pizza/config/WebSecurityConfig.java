@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
     private UserDetailsService jwtUserDetailsService;
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
-
+/*
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         // configure AuthenticationManager so that it knows from where to load
@@ -37,33 +37,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
         // Use BCryptPasswordEncoder
         auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
     }
-
+*/
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
 
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        // We don't need CSRF for now
-        httpSecurity.csrf().disable().
-                // make sure we use stateless session; session won't be used to
-                // store user's state.
-                        exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        // Add a filter to validate the tokens with every request
-        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-    }
-
+        @Override
+        protected void configure(HttpSecurity httpSecurity) throws Exception {
+            // We don't need CSRF for now
+            httpSecurity.csrf().disable().
+                    // make sure we use stateless session; session won't be used to
+                    // store user's state.
+                            exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+            // Add a filter to validate the tokens with every request
+            httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        }
     /*
-     * exclude swagger from any authorization req
-     * */
+      * exclude swagger from any authorization req
+       * */
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/v2/api-docs",

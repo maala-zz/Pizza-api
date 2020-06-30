@@ -1,7 +1,5 @@
 package com.innoscripta.pizza.dto;
 
-import java.util.UUID;
-
 public class AddPizzaRequestDto {
     public double price;
     public String description;

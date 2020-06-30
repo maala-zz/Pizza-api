@@ -11,8 +11,8 @@
 	<groupId>com.innoscripta</groupId>
 	<artifactId>pizza</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pizza-innoscripta</name>
-	<description>Test project for innoscripta</description>
+	<name>pizza</name>
+	<description>Demo project for innoscripta test</description>
 
 	<properties>
 		<java.version>1.8</java.version>

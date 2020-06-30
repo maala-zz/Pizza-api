@@ -1,6 +1,6 @@
 package com.innoscripta.pizza.config;
 
-import com.innoscripta.pizza.entity.User;
+//import com.innoscripta.pizza.entity.User;
 import com.innoscripta.pizza.service.JwtTokenUtil;
 import com.innoscripta.pizza.service.UserService;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -30,7 +30,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-
+/*
         final String requestTokenHeader = request.getHeader("Authorization");
         UUID userId = null;
         String jwtToken = null;
@@ -66,6 +66,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }
+        */
         chain.doFilter(request, response);
     }
 

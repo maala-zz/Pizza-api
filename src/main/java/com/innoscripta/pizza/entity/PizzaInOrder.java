@@ -2,7 +2,9 @@ package com.innoscripta.pizza.entity;
 
 import com.innoscripta.pizza.model.InnoscriptaEntity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PizzaInOrder extends InnoscriptaEntity {

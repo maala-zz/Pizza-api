@@ -29,7 +29,7 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiEndPointsInfo() {
 
-        return new ApiInfoBuilder().title("Auth REST API")
+        return new ApiInfoBuilder().title("Innoscripta pizza store REST API")
                 .description("Describe REST API end-points and entities")
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
